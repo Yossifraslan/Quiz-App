@@ -1,0 +1,39 @@
+const questions = [
+    {
+        question: "What is the capital city of France?",
+        answers: [
+            { text: "Berlin" , correct: false},
+            { text: "Madrid" , correct: false},
+            { text: "Paris" , correct: true},
+            { text: "Rome" , correct: false},
+        ]
+    },
+    {
+        question: "Which planet in our solar system is known for its rings?",
+        answers: [
+            { text: "Mars" , correct: false},
+            { text: "Saturn" , correct: true},
+            { text: "Jupiter" , correct: false},
+            { text: "Venus" , correct: false},
+        ]
+    },
+    {
+        question: "In Greek mythology, who was the mother of the twin brothers Castor and Pollux?",
+        answer: [
+            { text: "Hera" , correct: false},
+            { text: "Leda" , correct: true},
+            { text: "Demeter" , correct: false},
+            { text: "Aphrodite" , correct: false},
+        ]
+    },
+    {
+        question: " Which element has the highest melting point?",
+        answers: [
+            { text: "Iron" , correct: false},
+            { text: "Carbon" , correct: false},
+            { text: "Platinum" , correct: false},
+            { text: "Tungsten" , correct: true},
+
+        ]
+    }
+];
