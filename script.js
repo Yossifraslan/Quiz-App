@@ -109,6 +109,8 @@ function showCorrectAnswer(){
 
 
 function selectAnswer(e){
+    clearInterval(timer);
+
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
     if(isCorrect){
