@@ -41,9 +41,12 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const timerElement = document.getElementById("timer");
 
 let currentQuestionIndex = 0;
 let score = 0;
+let timer;
+let timeLeft = 10;
 
 function startQuiz(){
     currentQuestionIndex = 0;
@@ -54,6 +57,7 @@ function startQuiz(){
 
 function showQuestion(){
     resetState();
+
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
@@ -77,6 +81,21 @@ function resetState(){
     }
 }
 
+function startTimer(){
+    timeLeft = 6;
+    document.getElementById("timer").innerText = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").innerText = timeLeft;
+
+        if(timeLeft === 0){
+            clearInterval(timer);
+            showCorrectAnswer();
+        }
+    },1000)
+}
+
 function selectAnswer(e){
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
@@ -97,6 +116,7 @@ function selectAnswer(e){
 
 function showScore(){
     resetState();
+    
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
