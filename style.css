@@ -7,6 +7,42 @@
 body {
     background: #001e4d;
 }
+.welcome-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* full screen */
+    text-align: center;
+    background: #001e4d;
+    color: white;
+}
+
+.welcome-page h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.welcome-page p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#welcome-page button, #start-btn {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#welcome-page button:hover, #start-btn:hover {
+    background: #45a049;
+}
+
 .app{
     background: #fff;
     width: 90%;
@@ -49,6 +85,38 @@ body {
 }
 .btn:disabled{
     cursor: auto;
+}
+.timer-container{
+    display: flex;
+    justify-content:end;
+    margin: 15px 0;
+}
+.timer-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: conic-gradient(#4caf50 360deg, #ddd 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s linear;
+}
+.timer-circle span {
+    font-size: 28px;
+    font-weight: bold;
+    color: #222;
+}
+.timer-circle.warning {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.timer-hidden {
+  display: none;
 }
 
 #next-btn{
