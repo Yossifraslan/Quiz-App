@@ -7,7 +7,14 @@
     <title>Quiz App</title>
 </head>
 <body>
-<div class="app">
+    <div class="welcome-page" id="welcome-page">
+        <h1>Welcome to Trivia Trail!</h1>
+        <p>Test your knowledge and see how many questions you can get right!</p>
+        <button id="start-btn">Start Quiz</button>
+    </div>
+
+
+<div class="app" id="quiz-app" style="display: none;">
     <h1>Trivia Trail</h1>
     <div class="quiz">
         <h2 id="question">Question goes here</h2>
@@ -17,7 +24,11 @@
             <button class="btn">Answer 3</button>
             <button class="btn">Answer 4</button>
         </div>
-        <p id="timer"></p>
+        <div class="timer-container">
+            <div class="timer-circle">
+                <span id="timer">10</span>
+            </div>
+        </div>
         <button id="next-btn">Next</button>
     </div>
 </div>
