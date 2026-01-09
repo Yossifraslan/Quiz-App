@@ -42,17 +42,28 @@ const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const timerElement = document.getElementById("timer");
+const startBtn = document.getElementById("start-btn")
+const welcomePage = document.getElementById("welcome-page");
+const quizApp = document.getElementById("quiz-app");
+
+startBtn.addEventListener("click", () => {
+    welcomePage.style.display = "none"; 
+    quizApp.style.display = "block";    
+    startQuiz();                        
+});
 
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 6;
+let timeLeft = 10;
 
 function startQuiz(){
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Next";
     showQuestion();
+    document.querySelector(".timer-container").classList.remove("timer-hidden");
+
 }
 
 function showQuestion(){
@@ -84,17 +95,38 @@ function resetState(){
 }
 
 function startTimer(){
-    timeLeft = 6;
-    document.getElementById("timer").innerText = timeLeft;
+    timeLeft = 10;
+    timerElement.innerText = timeLeft;
+
+    const circle = document.querySelector(".timer-circle");
+
+    circle.classList.remove("warning");
+    circle.style.background = "conic-gradient(#4caf50 360deg, #ddd 0deg)";
+
+    clearInterval(timer);
 
     timer = setInterval(() => {
         timeLeft--;
-        document.getElementById("timer").innerText = timeLeft;
+        if (timeLeft < 0) return;
+
+    timerElement.innerText = timeLeft;
+    const progress = (timeLeft / 10) * 360;
 
         if(timeLeft === 0){
+            circle.classList.remove("warning");
+            circle.style.background = `conic-gradient(#ff5252 0deg, #ddd 0deg)`;
             clearInterval(timer);
             showCorrectAnswer();
+            return;
         }
+
+        if (timeLeft <= 3) {
+            circle.classList.add("warning");
+            circle.style.background = `conic-gradient(#ff5252 ${progress}deg, #ddd 0deg)`;
+        }else {
+            circle.style.background = `conic-gradient(#4caf50 ${progress}deg, #ddd 0deg)`;
+        }
+
     },1000)
 }
 
@@ -103,12 +135,14 @@ function showCorrectAnswer(){
         if(button.dataset.correct === "true") {
             button.classList.add("correct");
         }
+        button.disabled = true;
     });
     nextButton.style.display = "block"
 }
 
 
 function selectAnswer(e){
+    if (timeLeft === 0) return;
     clearInterval(timer);
 
     const selectedBtn = e.target;
@@ -131,7 +165,8 @@ function selectAnswer(e){
 function showScore(){
     resetState();
     clearInterval(timer);
-    timerElement.style.display = "none";
+    timerElement.innerText = "";
+    document.querySelector(".timer-container").classList.add("timer-hidden");
 
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
