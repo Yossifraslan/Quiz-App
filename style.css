@@ -1,28 +1,41 @@
+/*
+Global Reset And Font
+Remove default margins/paddings and set font
+*/
+
 * {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border are included in width/height */
 }
+
+/* Body Styling
+Background color for the entire page */
 body {
     background: #981212;
 }
+
+/* Welcome page styling
+Centered welcome message with full viewport height */
 .welcome-page {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
+    flex-direction: column;  /* stack elements vertically */
+    justify-content: center; /* center vertically */
+    align-items: center;    /* center horizontally */ 
+    height: 100vh;          /* Full viewport height */
     text-align: center;
     background: #921f6a;
     color: white;
 }
 
+/* Welcome Page Heading */
 .welcome-page h1 {
     font-size: 36px;
     margin-bottom: 20px;
 }
 
+/* Welcome Page Paragraph */
 .welcome-page p {
     font-size: 18px;
     margin-bottom: 30px;
@@ -32,40 +45,49 @@ body {
     background: #4caf50;
     color: #fff;
     border: none;
-    padding: 15px 30px;
+    padding: 15px 30px;     /* Top/Bottom and Left/Right padding */
     font-size: 18px;
-    border-radius: 8px;
+    border-radius: 8px;     /* Rounded corners */
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s;       /* Smooth hover transition */
 }
 
 #welcome-page button:hover, #start-btn:hover {
     background: #45a049;
 }
 
+/*Quiz App Containe */
 .app{
     background: #fff;
-    width: 90%;
-    max-width: 600px;
-    margin: 100px auto 0;
+    width: 90%;         /* Responsive width */
+    max-width: 600px;   /* Max width for larger screens */
+    margin: 100px auto 0;   /* Center horizontally and add top spacing */
     border-radius: 10px;
-    padding: 30px;
+    padding: 30px;  /* Inner spacing */
 }
+
+/* Quiz App Heading */
 .app h1{
     font-size: 25px;
     color: #001e4d;
     font-weight: 600;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #333;  /* Bottom border for separation */
     padding-bottom: 30px;
 }
+
+/* Quiz Section Padding */
 .quiz{
     padding: 20px 0;
 }
+
+/* Question Text Styling */
 .quiz h2{
     font-size: 18px;
     color: #001e4d;
     font-weight: 600;
 }
+
+/* Answer Buttons */
 .btn{
     background: #fff;
     color: #222;
@@ -73,52 +95,66 @@ body {
     width: 100%;
     border: 1px solid #222;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 0; /* Vertical spacing between buttons */
     text-align: left;
-    border-radius: 4px;
+    border-radius: 4px; /* Slightly rounded corners */
     cursor: pointer;
     transition: all 0.3s;
 }
+
+/* Hover Effect for Answer Buttons (only when enabled) */
 .btn:hover:not([disabled]){
     background: #222;
     color: #fff;
 }
+
+/* Disabled Buttons Styling */
 .btn:disabled{
     cursor: auto;
 }
+
+/* Timer Container & Circle */ 
 .timer-container{
     display: flex;
-    justify-content:end;
+    justify-content:end;    /* Align timer to the right */
     margin: 15px 0;
 }
 .timer-circle {
     width: 90px;
     height: 90px;
-    border-radius: 50%;
+    border-radius: 50%; /* Make circle */
     background: conic-gradient(#4caf50 360deg, #ddd 0deg);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s linear;
+    align-items: center;    /* Center timer text vertically */
+    justify-content: center;    /* Center timer text Horizontally */
+    transition: background 0.3s linear; /* Smooth background color change */
 }
+
+/* Timer Text */
 .timer-circle span {
     font-size: 28px;
     font-weight: bold;
     color: #222;
 }
+
+/* Warning Animation for Last 3 Seconds */
 .timer-circle.warning {
-  animation: pulse 1s infinite;
+  animation: pulse 1s infinite; /* Pulse animation */
 }
 
+/* Pulse Keyframes */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
+
+/* Hide timer (used when quiz ends) */
 .timer-hidden {
   display: none;
 }
 
+/* Next Button Styling */
 #next-btn{
     background:#001e4d;
     color: #fff;
@@ -126,7 +162,7 @@ body {
     width:150px;
     border: 0;
     padding: 10px;
-    margin: 20px auto 0;
+    margin: 20px auto 0;    /* Center horizontally */
     border-radius: 4px;
     cursor: pointer;
     display: none;
