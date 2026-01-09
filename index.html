@@ -7,28 +7,42 @@
     <title>Quiz App</title>
 </head>
 <body>
+    <!-- Welcome page
+    This is the initial screen the user sees before starting the quiz
+    -->
     <div class="welcome-page" id="welcome-page">
         <h1>Welcome to Trivia Trail!</h1>
         <p>Test your knowledge and see how many questions you can get right!</p>
+        <!-- Start button triggers the quiz to begin -->
         <button id="start-btn">Start Quiz</button>
     </div>
 
 
+    <!-- Main Quiz App Container
+         Initially hidden, displayed after user clicks Start Quiz -->
+
 <div class="app" id="quiz-app" style="display: none;">
     <h1>Trivia Trail</h1>
     <div class="quiz">
+        <!-- Question text will be dynamically updated by JS -->
         <h2 id="question">Question goes here</h2>
+        <!-- Container for answer, buttons are dynamically generated -->
         <div id="answer-buttons">
             <button class="btn">Answer 1</button>
             <button class="btn">Answer 2</button>
             <button class="btn">Answer 3</button>
             <button class="btn">Answer 4</button>
         </div>
+
+        <!-- Timer display -->
         <div class="timer-container">
             <div class="timer-circle">
+                <!-- Timer countdown value is updated by JS -->
                 <span id="timer">10</span>
             </div>
         </div>
+
+        <!-- Next button to move to the next question-->
         <button id="next-btn">Next</button>
     </div>
 </div>
