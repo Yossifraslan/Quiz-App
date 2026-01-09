@@ -130,6 +130,8 @@ function selectAnswer(e){
 
 function showScore(){
     resetState();
+    clearInterval(timer);
+    timerElement.style.display = "none";
     
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
