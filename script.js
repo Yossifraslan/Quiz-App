@@ -57,6 +57,8 @@ function startQuiz(){
 
 function showQuestion(){
     resetState();
+    clearInterval(timer);
+    startTimer();
 
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
