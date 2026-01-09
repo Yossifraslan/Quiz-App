@@ -59,3 +59,9 @@ body {
     cursor: pointer;
     display: none;
 }
+.correct{
+    background: #85BB65;
+}
+.incorrect{
+    background: #a43f3f;
+}
