@@ -19,7 +19,7 @@ const questions = [
     },
     {
         question: "In Greek mythology, who was the mother of the twin brothers Castor and Pollux?",
-        answer: [
+        answers: [
             { text: "Hera" , correct: false},
             { text: "Leda" , correct: true},
             { text: "Demeter" , correct: false},
@@ -94,6 +94,8 @@ function selectAnswer(e){
     });
     nextButton.style.display = "block";
 }
+
+
 
 function handleNextButton(){
     currentQuestionIndex++;
