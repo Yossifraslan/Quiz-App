@@ -46,7 +46,7 @@ const timerElement = document.getElementById("timer");
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 10;
+let timeLeft = 6;
 
 function startQuiz(){
     currentQuestionIndex = 0;
@@ -132,7 +132,7 @@ function showScore(){
     resetState();
     clearInterval(timer);
     timerElement.style.display = "none";
-    
+
     questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
