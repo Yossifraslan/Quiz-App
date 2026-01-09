@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body {
-    background: #001e4d;
+    background: #981212;
 }
 .welcome-page {
     display: flex;
@@ -14,7 +14,7 @@ body {
     align-items: center;
     height: 100vh; 
     text-align: center;
-    background: #001e4d;
+    background: #921f6a;
     color: white;
 }
 
