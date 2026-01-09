@@ -1,3 +1,7 @@
+/* 
+   Quiz Questions Array
+   Each question has text and multiple answers, with one marked as correct */
+
 const questions = [
     {
         question: "What is the capital city of France?",
@@ -24,6 +28,24 @@ const questions = [
             { text: "Leda" , correct: true},
             { text: "Demeter" , correct: false},
             { text: "Aphrodite" , correct: false},
+        ]
+    },
+    {
+        question: "What is the only letter that does NOT appear in the periodic table?",
+        answers: [
+            { text: "J" , correct: true},
+            { text: "Q" , correct: false},
+            { text: "X" , correct: false},
+            { text: "Z" , correct: false},
+        ]
+    },
+    {
+        question: "What is the smallest country in the world by land area?",
+        answers: [
+            { text: "Monaco" , correct: false},
+            { text: "San Marino" , correct: false},
+            { text: "Vatican City" , correct: true},
+            { text: "Liechtenstein" , correct: false},
         ]
     },
     {
