@@ -96,6 +96,16 @@ function startTimer(){
     },1000)
 }
 
+function showCorrectAnswer(){
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true") {
+            button.classList.add("correct");
+        }
+    });
+    nextButton.style.display = "block"
+}
+
+
 function selectAnswer(e){
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
