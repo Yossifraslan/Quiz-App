@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* full screen */
+    height: 100vh; 
     text-align: center;
     background: #001e4d;
     color: white;
