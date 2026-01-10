@@ -173,3 +173,44 @@ Centered welcome message with full viewport height */
 .incorrect{
     background: #a43f3f;
 }
+
+/* Mobile Responsive styles 
+Applies only on small screens */
+@media (max-width: 768px){
+
+    .app {
+        width: 95%;
+        margin: 40px auto;
+        padding: 20px;
+    }
+    .app h1 {
+        font-size: 22px;
+    }
+    .quiz h2 {
+        font-size: 16px;
+    }
+    .btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+    .timer-container {
+        justify-content: center;
+    }
+    .timer-circle {
+        width: 70px;
+        height: 70px;
+    }
+    .timer-circle span {
+        font-size: 22px;
+    }
+    #next-btn {
+        width: 100%;
+    }
+    .welcome-page p {
+        font-size: 16px;
+    }
+    #start-btn {
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+}
