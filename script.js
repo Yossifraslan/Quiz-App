@@ -195,13 +195,13 @@ function startQuiz() {
   document.querySelector(".timer-container").classList.remove("timer-hidden"); // Show timer
 }
 
-/* Show Question
-Displays question and generates answer buttons */
+/* Random questions selection */
 function getRandomQuestions(allQuestions, num) {
   const shuffled = [...allQuestions];
   shuffleArray(shuffled);
   return shuffled.slice(0, num);
 }
+/* to shuffle the questions around */
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -209,27 +209,33 @@ function shuffleArray(array) {
   }
 }
 
+/* Displays question and generates answer buttons */
 function showQuestion() {
-  resetState();
-  clearInterval(timer);
-  startTimer();
+  resetState();   // clear old buttons and hide next button
+  clearInterval(timer);  // stop any existing timer
+  startTimer();         // start timer for this question
 
   let currentQuestion = questions[currentQuestionIndex];
-  let questionNo = currentQuestionIndex + 1;
+  let questionNo = currentQuestionIndex + 1;    // display number
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
+  // generate answer buttons dynamically
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
-    button.innerHTML = answer.text;
-    button.classList.add("btn");
-    answerButtons.appendChild(button);
+    button.innerHTML = answer.text; // set button text
+    button.classList.add("btn");    // add styling
+    answerButtons.appendChild(button);  // append to container
+    
+    // store correctness in dataset
     if (answer.correct) {
       button.dataset.correct = answer.correct;
     }
+    // add click event for selecting answer
     button.addEventListener("click", selectAnswer);
   });
 }
 
+/* clears previous question and hides next button */
 function resetState() {
   nextButton.style.display = "none";
   while (answerButtons.firstChild) {
@@ -237,9 +243,10 @@ function resetState() {
   }
 }
 
+/* Counts down from 10 seconds, updates UI, handles warning and time-up */
 function startTimer() {
   timeLeft = 10;
-  timerElement.innerText = timeLeft;
+  timerElement.innerText = timeLeft;  // show initial time
 
   const circle = document.querySelector(".timer-circle");
 
@@ -250,10 +257,10 @@ function startTimer() {
 
   timer = setInterval(() => {
     timeLeft--;
-    if (timeLeft < 0) return;
+    if (timeLeft < 0) return;   
 
     timerElement.innerText = timeLeft;
-    const progress = (timeLeft / 10) * 360;
+    const progress = (timeLeft / 10) * 360;  // calculate progress for conic-gradient
 
     if (timeLeft === 0) {
       circle.classList.remove("warning");
@@ -262,7 +269,7 @@ function startTimer() {
       showCorrectAnswer();
       return;
     }
-
+    // warning for the last 3 seconds
     if (timeLeft <= 3) {
       circle.classList.add("warning");
       circle.style.background = `conic-gradient(#ff5252 ${progress}deg, #ddd 0deg)`;
@@ -272,6 +279,7 @@ function startTimer() {
   }, 1000);
 }
 
+/* Highlights correct answer and disables all buttons */
 function showCorrectAnswer() {
   Array.from(answerButtons.children).forEach((button) => {
     if (button.dataset.correct === "true") {
@@ -282,8 +290,9 @@ function showCorrectAnswer() {
   nextButton.style.display = "block";
 }
 
+/* Handles user selection and scoring */
 function selectAnswer(e) {
-  if (timeLeft === 0) return;
+  if (timeLeft === 0) return;   // ignore clicks if time is up
   clearInterval(timer);
 
   const selectedBtn = e.target;
@@ -299,6 +308,7 @@ function selectAnswer(e) {
     wrongSound.currentTime = 0;
     wrongSound.play();
   }
+  // show correct answer and disable all buttons
   Array.from(answerButtons.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
@@ -308,17 +318,19 @@ function selectAnswer(e) {
   nextButton.style.display = "block";
 }
 
+/* Displays final score and option to play again */
 function showScore() {
   resetState();
   clearInterval(timer);
   timerElement.innerText = "";
-  document.querySelector(".timer-container").classList.add("timer-hidden");
+  document.querySelector(".timer-container").classList.add("timer-hidden");  // hide timer circle
 
   questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
   nextButton.innerHTML = "Play Again";
   nextButton.style.display = "block";
 }
 
+/* Moves to next question or show score if quiz is over */
 function handleNextButton() {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
@@ -328,6 +340,7 @@ function handleNextButton() {
   }
 }
 
+/* Handles both next question and play again */
 nextButton.addEventListener("click", () => {
   if (currentQuestionIndex < questions.length) {
     handleNextButton();
@@ -336,4 +349,5 @@ nextButton.addEventListener("click", () => {
   }
 });
 
+// initial call 
 startQuiz();
