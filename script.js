@@ -151,35 +151,52 @@ const ALL_QUESTIONS = [
   },
 ];
 
-const questionElement = document.getElementById("question");
-const answerButtons = document.getElementById("answer-buttons");
-const nextButton = document.getElementById("next-btn");
-const timerElement = document.getElementById("timer");
-const startBtn = document.getElementById("start-btn");
-const welcomePage = document.getElementById("welcome-page");
-const quizApp = document.getElementById("quiz-app");
+/* DOM Elements */
+const questionElement = document.getElementById("question");      // Where the question text is displayed
+const answerButtons = document.getElementById("answer-buttons"); // Container for answer buttons
+const nextButton = document.getElementById("next-btn");         // Next button
+const timerElement = document.getElementById("timer");         // Timer display
+const startBtn = document.getElementById("start-btn");        // Start button on welcome page
+const welcomePage = document.getElementById("welcome-page"); // Welcome page container
+const quizApp = document.getElementById("quiz-app");        // Quiz app container
 
+// sound effects
+const correctSound = new Audio("sounds/correct.mp3");
+const wrongSound = new Audio("sounds/wrong.mp3");
+
+// prevent sound stacking
+correctSound.preload = "auto";
+wrongSound.preload = "auto";
+
+/* Event Listener for Start Button
+Hides welcome page and shows quiz, then starts the quiz */
 startBtn.addEventListener("click", () => {
   welcomePage.style.display = "none";
   quizApp.style.display = "block";
   startQuiz();
 });
 
+/* Quiz State Variables */
 let questions = [];
-let currentQuestionIndex = 0;
-let score = 0;
-let timer;
-let timeLeft = 10;
+let currentQuestionIndex = 0;   // Tracks current questions
+let score = 0;                  // Tracks user's score
+let timer;                      // Stores setInterval reference for timer
+let timeLeft = 10;              // Seconds left for current questions
 
+
+/* Start Quiz Function
+Resets state and shows first question */
 function startQuiz() {
-  questions = getRandomQuestions(ALL_QUESTIONS, 5);
-  currentQuestionIndex = 0;
-  score = 0;
-  nextButton.innerHTML = "Next";
-  showQuestion();
-  document.querySelector(".timer-container").classList.remove("timer-hidden");
+  questions = getRandomQuestions(ALL_QUESTIONS, 5); // 5 random questions per quiz
+  currentQuestionIndex = 0;                         // Reset question index
+  score = 0;                                        // Reset score
+  nextButton.innerHTML = "Next";                    // Reset next button text
+  showQuestion();                                   // Show the first question
+  document.querySelector(".timer-container").classList.remove("timer-hidden"); // Show timer
 }
 
+/* Show Question
+Displays question and generates answer buttons */
 function getRandomQuestions(allQuestions, num) {
   const shuffled = [...allQuestions];
   shuffleArray(shuffled);
@@ -271,11 +288,16 @@ function selectAnswer(e) {
 
   const selectedBtn = e.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
+
   if (isCorrect) {
     selectedBtn.classList.add("correct");
+    correctSound.currentTime = 0;
+    correctSound.play();
     score++;
   } else {
     selectedBtn.classList.add("incorrect");
+    wrongSound.currentTime = 0;
+    wrongSound.play();
   }
   Array.from(answerButtons.children).forEach((button) => {
     if (button.dataset.correct === "true") {
